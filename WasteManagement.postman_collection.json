@@ -1,0 +1,395 @@
+{
+	"info": {
+		"_postman_id": "952a3f2e-dc28-4593-a173-abf1b8c79230",
+		"name": "Waste Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34043870"
+	},
+	"item": [
+		{
+			"name": "wasteadminregister",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test that response status code is 200",
+							"pm.test(\"Verify Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Parse response JSON",
+							"let jsonData;",
+							"try {",
+							"    jsonData = pm.response.json();",
+							"} catch (e) {",
+							"    jsonData = {};",
+							"}",
+							"",
+							"// Test that message property exists and is 'Registration successful'",
+							"pm.test(\"Verify Response has message 'Registration successful'\", function () {",
+							"    pm.expect(jsonData).to.have.property('message', 'Registration successful');",
+							"});",
+							"",
+							"// Test that userdetails is an array with at least one user object",
+							"pm.test(\"Verify Response has userdetails array with at least one user\", function () {",
+							"    pm.expect(jsonData).to.have.property('userdetails').that.is.an('array').with.length.greaterThan(0);",
+							"});",
+							"",
+							"// Test that the first user object has expected properties",
+							"pm.test(\"Verify User object has expected properties\", function () {",
+							"    const user = jsonData.userdetails[0];",
+							"    pm.expect(user).to.be.an('object');",
+							"    pm.expect(user).to.have.property('id');",
+							"    pm.expect(user).to.have.property('fullname');",
+							"    pm.expect(user).to.have.property('phone');",
+							"    pm.expect(user).to.have.property('email');",
+							"    pm.expect(user).to.have.property('password');",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n           \r\n                \"fname\":\"{{$randomFirstName}}\",\r\n                \"lname\":\"{{$randomLastName}}\",\r\n                \"phone\":\"08023442255\",  \r\n                \"email\":\"{{$randomEmail}}\",\r\n                \"password\":\"Password@@1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/infinity/jewaapp/api/wasteadminregister",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"infinity",
+						"jewaapp",
+						"api",
+						"wasteadminregister"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "wasteadminlogin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n             \r\n                \"email\":\"Orrin_Marquardt23@yahoo.com\",\r\n                \"password\":\"Password@@1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/infinity/jewaapp/api/wasteadminlogin",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"infinity",
+						"jewaapp",
+						"api",
+						"wasteadminlogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addsmokingzone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n                     \"user_id\":\"1\",\r\n                           \"fullname\":\"fullname\",\r\n                           \"latitude\":\"latitude\",\r\n                           \"longitude\":\"longitude\",\r\n                           \"alias\":\"alias\",\r\n                           \"radius\":\"alias\",\r\n                \"status\":\"status\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jewapropertypro.com/infinity/jewaapp/api/addsmokingzone",
+					"protocol": "https",
+					"host": [
+						"jewapropertypro",
+						"com"
+					],
+					"path": [
+						"infinity",
+						"jewaapp",
+						"api",
+						"addsmokingzone"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addwastesection",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n                     \"user_id\":\"1\",\r\n                           \"fullname\":\"fullname\",\r\n                           \"latitude\":\"latitude\",\r\n                           \"longitude\":\"longitude\",\r\n                           \"alias\":\"alias\",\r\n                \"status\":\"status\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jewapropertypro.com/infinity/jewaapp/api/addwastesection",
+					"protocol": "https",
+					"host": [
+						"jewapropertypro",
+						"com"
+					],
+					"path": [
+						"infinity",
+						"jewaapp",
+						"api",
+						"addwastesection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatesmokingzone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n                     \"id\":\"1\",\r\n                          \r\n                \"status\":\"Inactive\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jewapropertypro.com/infinity/jewaapp/api/updatesmokingzone",
+					"protocol": "https",
+					"host": [
+						"jewapropertypro",
+						"com"
+					],
+					"path": [
+						"infinity",
+						"jewaapp",
+						"api",
+						"updatesmokingzone"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatewastesection",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n                     \"id\":\"1\",\r\n                          \r\n                \"status\":\"Inactive\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jewapropertypro.com/infinity/jewaapp/api/updatewastesection",
+					"protocol": "https",
+					"host": [
+						"jewapropertypro",
+						"com"
+					],
+					"path": [
+						"infinity",
+						"jewaapp",
+						"api",
+						"updatewastesection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletesmokingzone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n                     \"id\":\"1\",\r\n                          \r\n                \"status\":\"Inactive\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jewapropertypro.com/infinity/jewaapp/api/deletesmokingzone",
+					"protocol": "https",
+					"host": [
+						"jewapropertypro",
+						"com"
+					],
+					"path": [
+						"infinity",
+						"jewaapp",
+						"api",
+						"deletesmokingzone"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletewastesection",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n                     \"id\":\"1\",\r\n                          \r\n                \"status\":\"Inactive\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jewapropertypro.com/infinity/jewaapp/api/deletewastesection",
+					"protocol": "https",
+					"host": [
+						"jewapropertypro",
+						"com"
+					],
+					"path": [
+						"infinity",
+						"jewaapp",
+						"api",
+						"deletewastesection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getwastesection",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n                    \r\n                           \"alias\":\"alias\"\r\n               \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jewapropertypro.com/infinity/jewaapp/api/getwastesection",
+					"protocol": "https",
+					"host": [
+						"jewapropertypro",
+						"com"
+					],
+					"path": [
+						"infinity",
+						"jewaapp",
+						"api",
+						"getwastesection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getsmokingzone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n           \"alias\":\"alias\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jewapropertypro.com/infinity/jewaapp/api/getsmokingzone",
+					"protocol": "https",
+					"host": [
+						"jewapropertypro",
+						"com"
+					],
+					"path": [
+						"infinity",
+						"jewaapp",
+						"api",
+						"getsmokingzone"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getlocations",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n           \"alias\":\"alias\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jewapropertypro.com/infinity/jewaapp/api/getlocations",
+					"protocol": "https",
+					"host": [
+						"jewapropertypro",
+						"com"
+					],
+					"path": [
+						"infinity",
+						"jewaapp",
+						"api",
+						"getlocations"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
